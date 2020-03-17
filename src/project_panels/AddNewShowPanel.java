@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import entities.Show;
+import entities.Play;
 import utility.DataHolder;
 
 public class AddNewShowPanel extends JPanel implements ActionListener{
@@ -24,7 +24,7 @@ public class AddNewShowPanel extends JPanel implements ActionListener{
 	private JButton plus1, plus2;
 	private JLabel chosen1 = new JLabel(""),chosen2 = new JLabel("");
 	private JTextField titleTxtField = new JTextField();
-	private Show myShow;
+	private Play myShow;
 	private JFrame parent;
 	
 	public AddNewShowPanel(JFrame frame,String frameTitle){
@@ -36,15 +36,15 @@ public class AddNewShowPanel extends JPanel implements ActionListener{
 		
 		parent = null;
 		myShow = null;
-		basicUI
+		//basicUI
 	}
 
-	public AddNewShowPanel(JFrame frame,String frameTitle,Show show){
+	public AddNewShowPanel(JFrame frame,String frameTitle,Play play){
 		parent = frame;
-		myShow = show;
-		chosen1.setText(show.getStartDate());
-		chosen2.setText(show.getEndDate());
-		titleTxtField.setText(show.getTitle());
+		myShow = play;
+		chosen1.setText(play.getStartDate());
+		chosen2.setText(play.getEndDate());
+		titleTxtField.setText(play.getTitle());
 		basicUI(frameTitle);
 	}
 
@@ -152,11 +152,11 @@ public class AddNewShowPanel extends JPanel implements ActionListener{
 			{
 				if(myShow.equals(null))//It's a new show that the user is trying to add.
 				{
-					DataHolder.shows.add(new Show(this.titleTxtField.getText(), this.chosen1.getText(), this.chosen2.getText()));
+					DataHolder.plays.add(new Play(this.titleTxtField.getText(), this.chosen1.getText(), this.chosen2.getText()));
 				}
 				else
 				{//It's former show that the user is trying to modify.
-					DataHolder.shows.set(DataHolder.shows.indexOf(myShow),new Show(this.titleTxtField.getText(), this.chosen1.getText(), this.chosen2.getText()));
+					DataHolder.plays.set(DataHolder.plays.indexOf(myShow),new Play(this.titleTxtField.getText(), this.chosen1.getText(), this.chosen2.getText()));
 				}
 
 

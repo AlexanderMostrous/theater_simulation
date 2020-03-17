@@ -17,16 +17,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import entities.Performance;
 import entities.Show;
+import entities.Play;
 import utility.SpecialButton;
 
 public class ChoosePerformance extends JFrame implements ActionListener{
 
 	private JFrame parent;
-	private Show myShow;
+	private Play myShow;
 	
-	public ChoosePerformance(JFrame parent,String frameTitle,Show aShow)
+	public ChoosePerformance(JFrame parent,String frameTitle,Play aShow)
 	{
 		this.parent = parent;
 		this.myShow = aShow;
@@ -48,7 +48,7 @@ public class ChoosePerformance extends JFrame implements ActionListener{
 		helpPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		layer1Panel.add(helpPanel);
 		
-		for(Performance p:this.myShow.getMyPerformances())
+		for(Show p:this.myShow.getMyPerformances())
 			layer1Panel.add(createShowPanel(p));
 		
 		
@@ -66,7 +66,7 @@ public class ChoosePerformance extends JFrame implements ActionListener{
 	}
 
 	
-	public JPanel createShowPanel(Performance performance)
+	public JPanel createShowPanel(Show show)
 	{
 		JPanel panel = new JPanel();
 
@@ -86,7 +86,7 @@ public class ChoosePerformance extends JFrame implements ActionListener{
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel startDateLbl = new JLabel(performance.getDate());
+		JLabel startDateLbl = new JLabel(show.getDate());
 		startDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(startDateLbl, gbc);
 
@@ -102,7 +102,7 @@ public class ChoosePerformance extends JFrame implements ActionListener{
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel endDateLbl = new JLabel(performance.getTime());
+		JLabel endDateLbl = new JLabel(show.getTime());
 		endDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(endDateLbl, gbc);
 

@@ -14,17 +14,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import entities.Show;
+import entities.Play;
 import utility.DataHolder;
 
 public class DeleteShowPrompt extends JFrame implements ActionListener{
 
-	Show myShow;
+	Play myShow;
 	JFrame parent;
-	public DeleteShowPrompt(Show show, JFrame aFrame)
+	public DeleteShowPrompt(Play play, JFrame aFrame)
 	{
 		parent = aFrame;
-		this.myShow = show;
+		this.myShow = play;
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -74,7 +74,7 @@ public class DeleteShowPrompt extends JFrame implements ActionListener{
 
 		if(e.getActionCommand().equals("OK"))
 		{
-			DataHolder.shows.remove(myShow);
+			DataHolder.plays.remove(myShow);
 			new ProjectTheatricalShow(parent,"Προβολή Έργων");
 			parent.dispose();
 			this.dispose();

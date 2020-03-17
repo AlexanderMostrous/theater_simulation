@@ -16,18 +16,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import entities.Show;
+import entities.Play;
 import utility.DataHolder;
 
 public class ProjectTheatricalShowPanel extends JPanel implements ActionListener{
 
 	
-	public ProjectTheatricalShowPanel(String panelTitle)
+	public ProjectTheatricalShowPanel()
 	{
-			basicUI(panelTitle);
+			basicUI();
 	}
 	
-	public void basicUI(String panelTitle){
+	public void basicUI(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(new Dimension(screenSize.width,screenSize.height));
 		this.setLayout(new GridBagLayout());
@@ -37,15 +37,15 @@ public class ProjectTheatricalShowPanel extends JPanel implements ActionListener
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		if(!DataHolder.shows.isEmpty())
+		if(!DataHolder.plays.isEmpty())
 		{
-			for(Show s:DataHolder.shows)				
-				panel.add(new ShowPanel(s));			
+			for(Play s:DataHolder.plays)				
+				panel.add(new PlayPanel(s));			
 			panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		}
 		else
 		{
-			JLabel noShowsAvailableLabel = new JLabel("Δεν υπάρχουν διαθέσιμα έργα.");
+			JLabel noShowsAvailableLabel = new JLabel("No available plays yet.");
 			noShowsAvailableLabel.setFont(new Font("Myriad Pro",Font.PLAIN,20));
 			panel.add(noShowsAvailableLabel);
 			panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -67,12 +67,12 @@ public class ProjectTheatricalShowPanel extends JPanel implements ActionListener
 		JPanel outerPanel = new JPanel();
 		outerPanel.setLayout(new GridLayout(1, 2, 30, 0));
 
-		JButton menuBtn = new JButton("Κεντρικό Μενού");
+		JButton menuBtn = new JButton("Main Menu");
 		menuBtn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
 		menuBtn.addActionListener(this);
 		outerPanel.add(menuBtn);
 
-		JButton addNewShowBtn = new JButton("Προσθήκη Νέου Έργου");
+		JButton addNewShowBtn = new JButton("Add a new Play");
 		addNewShowBtn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
 		addNewShowBtn.addActionListener(this);
 		outerPanel.add(addNewShowBtn);

@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-import entities.Show;
-import project_panels.ShowPanel;
+import entities.Play;
+import project_panels.PlayPanel;
 import utility.DataHolder;
 
 public class TestingFrame extends JFrame {
@@ -44,12 +44,12 @@ public JPanel basicUI(String panelTitle){
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		if(!DataHolder.shows.isEmpty())
+		if(!DataHolder.plays.isEmpty())
 		{
-			for(Show s:DataHolder.shows)
+			for(Play s:DataHolder.plays)
 			{
 				
-				panel.add(new ShowPanel(s));
+				panel.add(new PlayPanel(s));
 			}
 			panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		}

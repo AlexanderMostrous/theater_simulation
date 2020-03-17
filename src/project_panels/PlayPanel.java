@@ -1,82 +1,33 @@
-package frames;
+package project_panels;
+
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
-import entities.Show;
-import utility.DataHolder;
+import entities.Play;
+import frames.MainMenu;
 import utility.SpecialButton;
 
-public class ProjectTheatricalShow extends JFrame implements ActionListener{
+public class PlayPanel extends JPanel implements ActionListener{
 
-	private JFrame parent; 
-	public ProjectTheatricalShow(JFrame parent,String frameTitle){
-
-		this.parent = parent;
-		basicUI(frameTitle);
-
+	
+	public PlayPanel(Play aShow)
+	{
+		createPlayPanel(aShow);
 	}
-
-	public void basicUI(String frameTitle){		
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-		if(!DataHolder.shows.isEmpty())
-		{
-			for(Show s:DataHolder.shows)
-				panel.add(createShowPanel(s));
-			panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		}
-		else
-		{
-			JLabel noShowsAvailableLabel = new JLabel("Δεν υπάρχουν διαθέσιμα έργα.");
-			noShowsAvailableLabel.setFont(new Font("Myriad Pro",Font.PLAIN,20));
-			panel.add(noShowsAvailableLabel);
-			panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-		}
-
-		JPanel temp = new JPanel();
-		temp.setLayout(new GridLayout(1, 2, 30, 0));
-
-		JButton menuBtn = new JButton("Κεντρικό Μενού");
-		menuBtn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
-		menuBtn.addActionListener(this);
-		temp.add(menuBtn);
-
-		JButton addNewShowBtn = new JButton("Προσθήκη Νέου Έργου");
-		addNewShowBtn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
-		addNewShowBtn.addActionListener(this);
-		temp.add(addNewShowBtn);
-		
-		temp.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-		panel.add(temp);
-
-		JScrollPane jsp = new JScrollPane(panel);
-
-		this.setContentPane(jsp);
-		this.pack();
-		this.setVisible(true);
-		this.setLocationRelativeTo(null);
-		this.setResizable(true);
-		this.setTitle(frameTitle);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
-
-	public JPanel createShowPanel(Show show)
+	
+	public void createPlayPanel(Play play)
 	{
 		JPanel panel = new JPanel();
 
@@ -87,7 +38,7 @@ public class ProjectTheatricalShow extends JFrame implements ActionListener{
 		gbc.insets = new Insets(10, 10, 5, 5);
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.WEST;
-		JLabel lbl1 = new JLabel("Τίτλος Έργου:");
+		JLabel lbl1 = new JLabel("Play title:");
 		lbl1.setFont(new Font("Myriad Pro",Font.PLAIN,20));
 		panel.add(lbl1, gbc);
 
@@ -96,7 +47,7 @@ public class ProjectTheatricalShow extends JFrame implements ActionListener{
 		gbc.insets = new Insets(10, 5, 5, 10);
 		gbc.gridwidth = 3;
 		gbc.anchor = GridBagConstraints.EAST;
-		JLabel titleLbl = new JLabel(show.getTitle());
+		JLabel titleLbl = new JLabel(play.getTitle());
 		titleLbl.setFont(new Font("Myriad Pro",Font.PLAIN,23));
 		panel.add(titleLbl, gbc);
 
@@ -105,14 +56,14 @@ public class ProjectTheatricalShow extends JFrame implements ActionListener{
 		gbc.insets = new Insets(5, 10, 5, 5);
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.EAST;
-		JLabel lbl2 = new JLabel("Ημερομηνία Έναρξης Προβολών:");
+		JLabel lbl2 = new JLabel("Play start date:");
 		lbl2.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(lbl2, gbc);
 
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel startDateLbl = new JLabel(show.getStartDate());
+		JLabel startDateLbl = new JLabel(play.getStartDate());
 		startDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(startDateLbl, gbc);
 
@@ -121,41 +72,41 @@ public class ProjectTheatricalShow extends JFrame implements ActionListener{
 		gbc.insets = new Insets(5, 10, 5, 5);
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.EAST;
-		JLabel lbl3 = new JLabel("Ημερομηνία Λήξης Προβολών:");
+		JLabel lbl3 = new JLabel("Play finish date:");
 		lbl3.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(lbl3, gbc);
 
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel endDateLbl = new JLabel(show.getEndDate());
+		JLabel endDateLbl = new JLabel(play.getEndDate());
 		endDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(endDateLbl, gbc);
 
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new GridLayout(1, 0, 20, 0));
 
-		SpecialButton wresProvolwnBtn = new SpecialButton("Ώρες Προβολών",show);
+		SpecialButton wresProvolwnBtn = new SpecialButton("Shows",play);
 		wresProvolwnBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		wresProvolwnBtn.addActionListener(this);
 		bottomPanel.add(wresProvolwnBtn, gbc);
 
-		SpecialButton detailsBtn = new SpecialButton("Λεπτομέρειες",show);
+		SpecialButton detailsBtn = new SpecialButton("Play details",play);
 		detailsBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		detailsBtn.addActionListener(this);
 		bottomPanel.add(detailsBtn, gbc);
 
-		SpecialButton ticketsBtn = new SpecialButton("Έκδοση Εισιτηρίων",show);
+		SpecialButton ticketsBtn = new SpecialButton("Ticket Booking",play);
 		ticketsBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		ticketsBtn.addActionListener(this);
 		bottomPanel.add(ticketsBtn, gbc);
 
-		SpecialButton modifyBtn = new SpecialButton("Τροποποίηση Έργου",show);
+		SpecialButton modifyBtn = new SpecialButton("Modify Play",play);
 		modifyBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		modifyBtn.addActionListener(this);
 		bottomPanel.add(modifyBtn, gbc);
 
-		SpecialButton deleteBtn = new SpecialButton("Διαγραφή Έργου",show);
+		SpecialButton deleteBtn = new SpecialButton("Delete Play",play);
 		deleteBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		deleteBtn.addActionListener(this);
 		bottomPanel.add(deleteBtn, gbc);
@@ -170,17 +121,20 @@ public class ProjectTheatricalShow extends JFrame implements ActionListener{
 
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-		return panel;
+		this.add(panel);	
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		if(e.getActionCommand().equals("Ώρες Προβολών"))
-		{
+		if(e.getActionCommand().equals("Shows"))
+		{/*
 			SpecialButton button = (SpecialButton)e.getSource();
 			new ProjectPerformanceDetailsOnAShow(this,button.getShow());
-			this.setVisible(false);
-		}
+			this.setVisible(false);*/
+			SpecialButton button = (SpecialButton)e.getSource();
+			MainMenu.preparePane(new ShowDetailsPanel(button.getPlay()));
+		}/*
 		else if(e.getActionCommand().equals("Λεπτομέρειες"))
 		{
 			SpecialButton button = (SpecialButton)e.getSource();
@@ -212,8 +166,6 @@ public class ProjectTheatricalShow extends JFrame implements ActionListener{
 		{
 			new AddNewShow(this,"Προσθήκη Νέου Έργου");
 			this.dispose();
-		}
+		}*/
 	}
-
-
 }

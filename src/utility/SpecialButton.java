@@ -1,23 +1,25 @@
 package utility;
 
 import javax.swing.JButton;
-import entities.Show;
+import entities.Play;
 
 public class SpecialButton extends JButton{
 
-	private Show myShow;
+	private Play myPlay;
 	
-	public SpecialButton(String text,Show aShow){
+	public SpecialButton(String text,Play aPlay)
+	{
 		super(text);
-		this.myShow = aShow;
+		this.myPlay = aPlay;
 	}
 	
-	public Show getShow() {
-		return myShow;
-	}
-	public void setShow(Show myShow) {
-		this.myShow = myShow;
+	public Play getPlay()
+	{
+		return myPlay;
 	}
 	
-	
+	public void setPlay(Play aPlay)
+	{
+		this.myPlay = aPlay;
+	}
 }

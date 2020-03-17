@@ -17,22 +17,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import entities.Show;
+import entities.Play;
 
 public class ProjectProducers extends JFrame implements ActionListener{
 
 	private JPanel mainPanel;
 	private JLabel director = new JLabel(), scriptWriter = new JLabel();
 	private ArrayList<JTextField> actors = new ArrayList<JTextField>();
-	private Show myShow;
+	private Play myShow;
 	private JFrame parent;
 	private String frameTitle;
 
-	public ProjectProducers(JFrame parent, String frameTitle, Show show){
+	public ProjectProducers(JFrame parent, String frameTitle, Play play){
 
 		this.parent = parent;
 		this.frameTitle = frameTitle;
-		myShow = show;
+		myShow = play;
 		mainPanel = createBasicPanel();
 
 		this.getContentPane().add(mainPanel);

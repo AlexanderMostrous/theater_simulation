@@ -17,36 +17,36 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import entities.Details;
-import entities.Show;
+import entities.Play;
 
 public class InputProducers extends JFrame implements ActionListener{
 
 	private JPanel mainPanel;
 	private JTextField director = new JTextField("<кень>"), scriptWriter = new JTextField("<кень>");
 	private ArrayList<JTextField> actors = new ArrayList<JTextField>();
-	private Show myShow;
+	private Play myShow;
 	private JFrame parent;
 	private String frameTitle;
 	private int counter;
 
-	public InputProducers(JFrame parent, String frameTitle, Show show, int amountOfActors){
+	public InputProducers(JFrame parent, String frameTitle, Play play, int amountOfActors){
 
 		this.parent = parent;
 		counter = amountOfActors;
 		this.frameTitle = frameTitle;
-		myShow = show;
+		myShow = play;
 		mainPanel = createBasicPanel();
 
 		this.getContentPane().add(mainPanel);
 		this.setUp();
 	}
 	
-	public InputProducers(JFrame parent, String frameTitle, Show show){
+	public InputProducers(JFrame parent, String frameTitle, Play play){
 
 		this.parent = parent;
 		counter = 1;
 		this.frameTitle = frameTitle;
-		myShow = show;
+		myShow = play;
 		mainPanel = createBasicPanel();
 
 		this.getContentPane().add(mainPanel);

@@ -9,7 +9,7 @@ public class Main {
 		
 		//TODO JUST DO THE TASKS
 
-		new MainMenu();
+		MainMenu.createMainMenu();
 		//new TestingFrame();
 		
 	}

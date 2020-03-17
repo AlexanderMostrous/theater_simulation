@@ -1,4 +1,5 @@
-package frames;
+package project_panels;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,40 +13,28 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import entities.Show;
 import entities.Play;
+import entities.Show;
 import utility.JTableUtilities;
 
-public class ProjectPerformanceDetailsOnAShow  extends JFrame implements ActionListener{
+public class ShowDetailsPanel extends JPanel implements ActionListener{
 
-	private Play myShow;
-	private JFrame parent;
-	private ArrayList<Show> newlyAddedPerformances;
-
-	public ProjectPerformanceDetailsOnAShow(JFrame parent, Play aShow){
-
-		this.parent = parent;
-		myShow = aShow;
-		basicUI();
-
+	private Play myPlay;
+	private ArrayList<Show> newlyAddedShows;
+	
+	public ShowDetailsPanel(Play aPlay) 
+	{
+		myPlay = aPlay;
+		setBasicUI();
 	}
-
-	public ProjectPerformanceDetailsOnAShow(JFrame parent, Play aShow, ArrayList<Show> newlyAddedPerformances){
-
-		this.newlyAddedPerformances = newlyAddedPerformances;
-		this.parent = parent;
-		myShow = aShow;
-		basicUI();
-
-	}
-	public void basicUI(){		
+	
+	public void setBasicUI(){		
 
 		JPanel panel = new JPanel();
 		JLabel titleLbl = new JLabel();
@@ -66,7 +55,7 @@ public class ProjectPerformanceDetailsOnAShow  extends JFrame implements ActionL
 
 		gbc.gridwidth = 3;
 		gbc.gridx++;
-		JLabel titleLabel = new JLabel(myShow.getTitle());
+		JLabel titleLabel = new JLabel(myPlay.getTitle());
 		titleLabel.setFont(new Font("Myriad Pro",Font.PLAIN,20));
 		panel.add(titleLabel, gbc);
 
@@ -100,65 +89,33 @@ public class ProjectPerformanceDetailsOnAShow  extends JFrame implements ActionL
 		gbc.gridx=0;
 		gbc.insets = new Insets(0, 10, 15, 10);
 		panel.add(temp, gbc);
-
-
-		this.setContentPane(panel);
-		this.pack();
-		this.setVisible(true);
-		this.setLocationRelativeTo(null);
-		this.setResizable(false);
-		this.setTitle("Παραστάσεις");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		if(e.getActionCommand().equals("OK"))
-		{
-			for(Show p:this.newlyAddedPerformances)
-				myShow.addPerformance(p);
-
-			parent.setVisible(true);
-			this.dispose();
-		}
-		else if(e.getActionCommand().equals("Ακύρωση"))
-		{
-			parent.setVisible(true);
-			this.dispose();
-		}
-		else if(e.getActionCommand().equals("+"))
-		{
-			new AddPerformanceOnShow(this,myShow);
-			this.setVisible(false);
-		}
-	}
-
+	
 	public JPanel createTimeTablePanel(){
 		String[] columnNames = {"Ημερομηνία","Ώρα"};
 
 		String[][] data = {{"κενή ημερομηνία","κενή ώρα"},{"κενή ημερομηνία","κενή ώρα"}};
 		int rows=0;
-		if(myShow.getMyPerformances().size()>0)
-			rows += myShow.getMyPerformances().size();
-		if(this.newlyAddedPerformances!=null)
-			rows += this.newlyAddedPerformances.size();
+		if(myPlay.getMyPerformances().size()>0)
+			rows += myPlay.getMyPerformances().size();
+		if(this.newlyAddedShows!=null)
+			rows += this.newlyAddedShows.size();
 
 		if(rows>0)//It means that data DO exist.
 		{
 			data = new String[rows][2];
 			int i=0;
-			if(myShow.getMyPerformances().size()>0)
+			if(myPlay.getMyPerformances().size()>0)
 			{
-				for(Show p:myShow.getMyPerformances())
+				for(Show p:myPlay.getMyPerformances())
 				{
 					data[i][0] = p.getDate();
 					data[i][1] = p.getTime();
 					i++;
 				}
 			}
-			if(this.newlyAddedPerformances!=null)
-				for(Show p:this.newlyAddedPerformances)
+			if(this.newlyAddedShows!=null)
+				for(Show p:this.newlyAddedShows)
 				{
 					data[i][0] = p.getDate();
 					data[i][1] = p.getTime();
@@ -212,10 +169,9 @@ public class ProjectPerformanceDetailsOnAShow  extends JFrame implements ActionL
 
 		return panel;
 	}
-
-	public JFrame getParentFrame()
-	{
-		return parent;
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
-

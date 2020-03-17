@@ -14,23 +14,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import entities.Performance;
 import entities.Show;
+import entities.Play;
 import utility.TimeData;
 
 public class AddPerformanceOnShow  extends JFrame implements ActionListener{
 
 	private JComboBox<String> hourComboBox, minuteComboBox;
 	
-	private Show myShow;
+	private Play myShow;
 	private JFrame parent;
 	private JLabel chosenDateLabel = new JLabel("");
 	private JComboBox<String> someHourComboBox,someMinuteComboBox;
 
-	private ArrayList<Performance> newlyAddedPerformances = new ArrayList<Performance>();
+	private ArrayList<Show> newlyAddedPerformances = new ArrayList<Show>();
 	
 	
-	public AddPerformanceOnShow(JFrame parent, Show myShow){
+	public AddPerformanceOnShow(JFrame parent, Play myShow){
 
 		this.parent = parent;
 		this.myShow = myShow;
@@ -169,7 +169,7 @@ public class AddPerformanceOnShow  extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("OK"))
 		{
 			if(!chosenDateLabel.getText().equals("")){
-			Performance aPerformance = new Performance(
+			Show aPerformance = new Show(
 					myShow,
 					chosenDateLabel.getText(),
 					""+someHourComboBox.getSelectedItem().toString()+":"+someMinuteComboBox.getSelectedItem().toString());
@@ -200,7 +200,7 @@ public class AddPerformanceOnShow  extends JFrame implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("Προσθήκη"))
 		{
-			Performance aPerformance = new Performance(
+			Show aPerformance = new Show(
 					myShow,
 					chosenDateLabel.getText(),
 					""+someHourComboBox.getSelectedItem().toString()+":"+someMinuteComboBox.getSelectedItem().toString());

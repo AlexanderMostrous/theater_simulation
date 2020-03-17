@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import entities.Show;
+import entities.Play;
 import utility.DataHolder;
 import utility.SpecialButton;
 
@@ -29,8 +29,8 @@ public class ChooseShow extends JFrame implements ActionListener{
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
-		for(Show show:DataHolder.shows)
-		 panel.add(createShowPanel(show));
+		for(Play play:DataHolder.plays)
+		 panel.add(createShowPanel(play));
 		
 		this.setContentPane(panel);
 		this.pack();
@@ -41,7 +41,7 @@ public class ChooseShow extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public JPanel createShowPanel(Show show)
+	public JPanel createShowPanel(Play play)
 	{
 		JPanel panel = new JPanel();
 
@@ -61,7 +61,7 @@ public class ChooseShow extends JFrame implements ActionListener{
 		gbc.insets = new Insets(10, 5, 5, 10);
 		gbc.gridwidth = 3;
 		gbc.anchor = GridBagConstraints.EAST;
-		JLabel titleLbl = new JLabel(show.getTitle());
+		JLabel titleLbl = new JLabel(play.getTitle());
 		titleLbl.setFont(new Font("Myriad Pro",Font.PLAIN,23));
 		panel.add(titleLbl, gbc);
 
@@ -77,7 +77,7 @@ public class ChooseShow extends JFrame implements ActionListener{
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel startDateLbl = new JLabel(show.getStartDate());
+		JLabel startDateLbl = new JLabel(play.getStartDate());
 		startDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(startDateLbl, gbc);
 
@@ -93,19 +93,19 @@ public class ChooseShow extends JFrame implements ActionListener{
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel endDateLbl = new JLabel(show.getEndDate());
+		JLabel endDateLbl = new JLabel(play.getEndDate());
 		endDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(endDateLbl, gbc);
 
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new GridLayout(1, 0, 20, 0));
 
-		SpecialButton chooseBtn = new SpecialButton("Επιλογή",show);
+		SpecialButton chooseBtn = new SpecialButton("Επιλογή",play);
 		chooseBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		chooseBtn.addActionListener(this);
 		bottomPanel.add(chooseBtn, gbc);
 		
-		SpecialButton detailsBtn = new SpecialButton("Λεπτομέρειες",show);
+		SpecialButton detailsBtn = new SpecialButton("Λεπτομέρειες",play);
 		detailsBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		detailsBtn.addActionListener(this);
 		bottomPanel.add(detailsBtn, gbc);
