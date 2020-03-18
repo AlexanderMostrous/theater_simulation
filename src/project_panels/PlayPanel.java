@@ -129,11 +129,11 @@ public class PlayPanel extends JPanel implements ActionListener{
 	{
 		if(e.getActionCommand().equals("Shows"))
 		{/*
-			SpecialButton button = (SpecialButton)e.getSource();
+			
 			new ProjectPerformanceDetailsOnAShow(this,button.getShow());
 			this.setVisible(false);*/
 			SpecialButton button = (SpecialButton)e.getSource();
-			MainMenu.preparePane(new ShowDetailsPanel(button.getPlay()));
+			MainMenu.swapTabComponent(new ShowDetailsPanel(button.getPlay()));
 		}/*
 		else if(e.getActionCommand().equals("Λεπτομέρειες"))
 		{

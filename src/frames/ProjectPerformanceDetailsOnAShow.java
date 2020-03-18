@@ -117,7 +117,7 @@ public class ProjectPerformanceDetailsOnAShow  extends JFrame implements ActionL
 		if(e.getActionCommand().equals("OK"))
 		{
 			for(Show p:this.newlyAddedPerformances)
-				myShow.addPerformance(p);
+				myShow.addShow(p);
 
 			parent.setVisible(true);
 			this.dispose();
@@ -139,8 +139,8 @@ public class ProjectPerformanceDetailsOnAShow  extends JFrame implements ActionL
 
 		String[][] data = {{"κενή ημερομηνία","κενή ώρα"},{"κενή ημερομηνία","κενή ώρα"}};
 		int rows=0;
-		if(myShow.getMyPerformances().size()>0)
-			rows += myShow.getMyPerformances().size();
+		if(myShow.getMyShows().size()>0)
+			rows += myShow.getMyShows().size();
 		if(this.newlyAddedPerformances!=null)
 			rows += this.newlyAddedPerformances.size();
 
@@ -148,9 +148,9 @@ public class ProjectPerformanceDetailsOnAShow  extends JFrame implements ActionL
 		{
 			data = new String[rows][2];
 			int i=0;
-			if(myShow.getMyPerformances().size()>0)
+			if(myShow.getMyShows().size()>0)
 			{
-				for(Show p:myShow.getMyPerformances())
+				for(Show p:myShow.getMyShows())
 				{
 					data[i][0] = p.getDate();
 					data[i][1] = p.getTime();

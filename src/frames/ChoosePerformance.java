@@ -48,7 +48,7 @@ public class ChoosePerformance extends JFrame implements ActionListener{
 		helpPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		layer1Panel.add(helpPanel);
 		
-		for(Show p:this.myShow.getMyPerformances())
+		for(Show p:this.myShow.getMyShows())
 			layer1Panel.add(createShowPanel(p));
 		
 		

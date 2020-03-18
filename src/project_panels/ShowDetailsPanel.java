@@ -36,9 +36,9 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 	
 	public void setBasicUI(){		
 
-		JPanel panel = new JPanel();
+		
 		JLabel titleLbl = new JLabel();
-		panel.setLayout(new GridBagLayout());
+		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -48,29 +48,29 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		gbc.insets = new Insets(15, 10, 15, 10);
 
 		gbc.gridwidth = 1;
-		titleLbl.setText("Τίτλος Έργου:");
+		titleLbl.setText("Play Title:");
 		titleLbl.setFont(new Font("Myriad Pro",Font.PLAIN,20));
-		panel.add(titleLbl, gbc);
+		this.add(titleLbl, gbc);
 
 
 		gbc.gridwidth = 3;
 		gbc.gridx++;
 		JLabel titleLabel = new JLabel(myPlay.getTitle());
 		titleLabel.setFont(new Font("Myriad Pro",Font.PLAIN,20));
-		panel.add(titleLabel, gbc);
+		this.add(titleLabel, gbc);
 
 		gbc.gridwidth = 4;
 		gbc.gridy++;
 		gbc.gridx=0;
 		JPanel timeTablePanel = this.createTimeTablePanel();
 
-		panel.add(timeTablePanel, gbc);
+		this.add(timeTablePanel, gbc);
 
 
 		JPanel rightPanel = this.createAddShowPanel();
 		gbc.gridwidth = 4;
 		gbc.gridy++;
-		panel.add(rightPanel, gbc);		
+		this.add(rightPanel, gbc);		
 
 		JPanel temp = new JPanel();
 		temp.setLayout(new GridLayout(1, 2, 10, 0));
@@ -88,7 +88,8 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		gbc.gridy++;
 		gbc.gridx=0;
 		gbc.insets = new Insets(0, 10, 15, 10);
-		panel.add(temp, gbc);
+		this.add(temp, gbc);
+		
 	}
 	
 	public JPanel createTimeTablePanel(){
@@ -96,8 +97,8 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 
 		String[][] data = {{"κενή ημερομηνία","κενή ώρα"},{"κενή ημερομηνία","κενή ώρα"}};
 		int rows=0;
-		if(myPlay.getMyPerformances().size()>0)
-			rows += myPlay.getMyPerformances().size();
+		if(myPlay.getMyShows().size()>0)
+			rows += myPlay.getMyShows().size();
 		if(this.newlyAddedShows!=null)
 			rows += this.newlyAddedShows.size();
 
@@ -105,9 +106,9 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		{
 			data = new String[rows][2];
 			int i=0;
-			if(myPlay.getMyPerformances().size()>0)
+			if(myPlay.getMyShows().size()>0)
 			{
-				for(Show p:myPlay.getMyPerformances())
+				for(Show p:myPlay.getMyShows())
 				{
 					data[i][0] = p.getDate();
 					data[i][1] = p.getTime();
@@ -136,7 +137,7 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		tempPanel.setLayout(new BorderLayout());
 		tempPanel.add(table.getTableHeader(), BorderLayout.CENTER);
 		tempPanel.add(table, BorderLayout.SOUTH);
-		String text = "Τρέχουσες Παραστάσεις";
+		String text = "Current Shows";
 
 		tempPanel.setBorder(BorderFactory.createTitledBorder(null,
 				text, 
@@ -154,7 +155,7 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		panel.setLayout(new GridBagLayout());
 
 		GridBagConstraints gbc = new GridBagConstraints();
-		JLabel lbl = new JLabel("Προσθήκη Νέας Παράστασης");
+		JLabel lbl = new JLabel("Add New Show");
 		lbl.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 
 		JButton btn = new JButton("+");

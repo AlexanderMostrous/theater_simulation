@@ -1,16 +1,11 @@
 package entities;
-
 import java.util.ArrayList;
 
 public class Play {
 
 	private String title, startDate, endDate;
-	private ArrayList<Show> myPerformances = new ArrayList<>();
+	private ArrayList<Show> myShows = new ArrayList<>();
 	private Details myDetails = new Details();
-	public Play()
-	{
-		
-	}
 	
 	public Play(String title)
 	{
@@ -24,12 +19,12 @@ public class Play {
 		this.endDate = endDate;
 	}
 	
-	public Play(String title, String startDate, String endDate,Show aPerformance)
+	public Play(String title, String startDate, String endDate,Show aShow)
 	{
 		this.title = title;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.myPerformances.add(aPerformance);
+		this.myShows.add(aShow);
 	}
 
 	public Details getMyDetails() {
@@ -40,16 +35,16 @@ public class Play {
 		this.myDetails = myDetails;
 	}
 
-	public ArrayList<Show> getMyPerformances() {
-		return myPerformances;
+	public ArrayList<Show> getMyShows() {
+		return myShows;
 	}
 
-	public void addPerformance(Show aPerformance) {
-		this.myPerformances.add(aPerformance);
+	public void addShow(Show aShow) {
+		this.myShows.add(aShow);
 	}
 	
-	public void removePerformance(Show aPerformance){
-		this.myPerformances.remove(aPerformance);
+	public void removeShow(Show aShow){
+		this.myShows.remove(aShow);
 	}
 	
 	public String getTitle() {
