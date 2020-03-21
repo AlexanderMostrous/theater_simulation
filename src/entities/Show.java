@@ -5,9 +5,9 @@ public class Show {
 	private Play myPlay;
 	private String date, time;
 	
-	public Show(Play aShow, String aDate, String aTime){
+	public Show(Play aPlay, String aDate, String aTime){
 		
-		myPlay = aShow;
+		myPlay = aPlay;
 		date = aDate;
 		time = aTime;	
 	}

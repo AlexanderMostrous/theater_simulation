@@ -2,16 +2,21 @@ package project_panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,12 +26,12 @@ import javax.swing.border.TitledBorder;
 
 import entities.Play;
 import entities.Show;
+import frames.MainMenu;
 import utility.JTableUtilities;
 
 public class ShowDetailsPanel extends JPanel implements ActionListener{
 
 	private Play myPlay;
-	private ArrayList<Show> newlyAddedShows;
 	
 	public ShowDetailsPanel(Play aPlay) 
 	{
@@ -34,145 +39,136 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		setBasicUI();
 	}
 	
-	public void setBasicUI(){		
-
+	public void setBasicUI(){//TODO This panel can be way more beautiful
+		
+		JPanel 
+		outerPanel = new JPanel(),
+		titlePanel = getPlayTitlePanel(),
+		timeTablePanel = getAllShowsDetailsPanel(),
+		buttonsPanel = getUtilityPanel();
+		
+		outerPanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		int i = 0, j = 0;//i for rows, j for columns
+		
+		gbc.gridx = j;
+		gbc.gridy = i;
+		gbc.gridheight = 2;
+		gbc.weighty = 0;
+		gbc.anchor = GridBagConstraints.WEST;
+		outerPanel.add(titlePanel,gbc);
+		i+=10;
+		
+		gbc.gridx = j;
+		gbc.gridy = i;
+		gbc.gridheight = GridBagConstraints.RELATIVE;
+		gbc.weighty = 0.9;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		outerPanel.add(timeTablePanel,gbc);
+		i+=1;
+		
+		gbc.gridx = j;
+		gbc.gridy = i;		
+		gbc.weighty = 0.1;
+		gbc.anchor = GridBagConstraints.EAST;
+		outerPanel.add(buttonsPanel,gbc);
+		
+		this.setLayout(new BorderLayout());
+		this.add(outerPanel,BorderLayout.LINE_START);
+	}
+	
+	private JPanel getPlayTitlePanel()
+	{
+		JPanel playPanel = new JPanel();
+		playPanel.setLayout(new GridLayout(1,2,5,0));
 		
 		JLabel titleLbl = new JLabel();
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-
-		gbc.gridy=0;
-		gbc.gridx=0;
-		gbc.insets = new Insets(15, 10, 15, 10);
-
-		gbc.gridwidth = 1;
+		
 		titleLbl.setText("Play Title:");
-		titleLbl.setFont(new Font("Myriad Pro",Font.PLAIN,20));
-		this.add(titleLbl, gbc);
-
-
-		gbc.gridwidth = 3;
-		gbc.gridx++;
+		titleLbl.setFont(new Font("Myriad Pro",Font.PLAIN,25));
+		playPanel.add(titleLbl);
+		
 		JLabel titleLabel = new JLabel(myPlay.getTitle());
-		titleLabel.setFont(new Font("Myriad Pro",Font.PLAIN,20));
-		this.add(titleLabel, gbc);
-
-		gbc.gridwidth = 4;
-		gbc.gridy++;
-		gbc.gridx=0;
-		JPanel timeTablePanel = this.createTimeTablePanel();
-
-		this.add(timeTablePanel, gbc);
-
-
-		JPanel rightPanel = this.createAddShowPanel();
-		gbc.gridwidth = 4;
-		gbc.gridy++;
-		this.add(rightPanel, gbc);		
-
-		JPanel temp = new JPanel();
-		temp.setLayout(new GridLayout(1, 2, 10, 0));
+		titleLabel.setFont(new Font("Myriad Pro",Font.PLAIN,30));
+		playPanel.add(titleLabel);
+		
+		return playPanel;
+	}
+	
+	private JPanel getAllShowsDetailsPanel()
+	{
+		JPanel detailsOfAllShowsPanel = new JPanel();
+		detailsOfAllShowsPanel.setLayout(new GridLayout(0, 1, 0, 10));
+		ArrayList<Show> listOfAllShows = this.myPlay.getMyShows();//TODO The case that there are no shows logged yet must be considered
+		
+		for(Show s:listOfAllShows)
+		{
+			detailsOfAllShowsPanel.add(getOneShowDetailsPanel(s));
+		}
+		
+		return detailsOfAllShowsPanel;
+	}
+	
+	private JPanel getUtilityPanel()
+	{
+		JPanel utilityPanel = new JPanel();
+		
+		utilityPanel.setLayout(new FlowLayout());
 
 		JButton okBtn = new JButton("OK");
 		okBtn.addActionListener(this);
-		temp.add(okBtn);
+		utilityPanel.add(okBtn);
 
-		JButton cancelButton = new JButton("Ακύρωση");
-		cancelButton.addActionListener(this);
-		temp.add(cancelButton, gbc);
-
-
-		gbc.gridwidth = 4;
-		gbc.gridy++;
-		gbc.gridx=0;
-		gbc.insets = new Insets(0, 10, 15, 10);
-		this.add(temp, gbc);
+		JButton newShowBtn = new JButton("New show");
+		newShowBtn.addActionListener(this);
+		utilityPanel.add(newShowBtn);
 		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(this);
+		utilityPanel.add(cancelButton);
+		
+		return utilityPanel;
 	}
 	
-	public JPanel createTimeTablePanel(){
-		String[] columnNames = {"Ημερομηνία","Ώρα"};
-
-		String[][] data = {{"κενή ημερομηνία","κενή ώρα"},{"κενή ημερομηνία","κενή ώρα"}};
-		int rows=0;
-		if(myPlay.getMyShows().size()>0)
-			rows += myPlay.getMyShows().size();
-		if(this.newlyAddedShows!=null)
-			rows += this.newlyAddedShows.size();
-
-		if(rows>0)//It means that data DO exist.
-		{
-			data = new String[rows][2];
-			int i=0;
-			if(myPlay.getMyShows().size()>0)
-			{
-				for(Show p:myPlay.getMyShows())
-				{
-					data[i][0] = p.getDate();
-					data[i][1] = p.getTime();
-					i++;
-				}
-			}
-			if(this.newlyAddedShows!=null)
-				for(Show p:this.newlyAddedShows)
-				{
-					data[i][0] = p.getDate();
-					data[i][1] = p.getTime();
-					i++;
-				}
-		}
-
-
-
-		JPanel panel = new JPanel(), tempPanel = new JPanel();
-		JTable table = new JTable(data, columnNames);
-		JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
-		table.setFont(new Font("Myriad Pro", Font.PLAIN, 18));
-		table.getTableHeader().setFont(new Font("Myriad Pro", Font.PLAIN, 20));
-
-		panel.setLayout(new BorderLayout());
-
-		tempPanel.setLayout(new BorderLayout());
-		tempPanel.add(table.getTableHeader(), BorderLayout.CENTER);
-		tempPanel.add(table, BorderLayout.SOUTH);
-		String text = "Current Shows";
-
-		tempPanel.setBorder(BorderFactory.createTitledBorder(null,
-				text, 
-				TitledBorder.DEFAULT_JUSTIFICATION ,
-				TitledBorder.DEFAULT_POSITION, 
-				new Font("Myriad Pro", Font.PLAIN, 18), 
-				Color.BLACK));
-		panel.add(tempPanel, BorderLayout.CENTER);
-
-
-		return panel;
-	}
-	public JPanel createAddShowPanel(){
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridBagLayout());
-
-		GridBagConstraints gbc = new GridBagConstraints();
-		JLabel lbl = new JLabel("Add New Show");
-		lbl.setFont(new Font("Myriad Pro",Font.PLAIN,18));
-
-		JButton btn = new JButton("+");
-		btn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
-		btn.addActionListener(this);
-		gbc.gridx=0;
-		gbc.gridy=0;
-		panel.add(lbl, gbc);
-		gbc.gridx++;
-		gbc.insets = new Insets(10, 10, 10, 10);
-		panel.add(btn,gbc);
-
-		return panel;
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	private JPanel getOneShowDetailsPanel(Show aShow)
+	{
+		JPanel detailsOfOneShowPanel = new JPanel();
+		detailsOfOneShowPanel.setLayout(new GridLayout(1, 0, 2, 0));
 		
+		JLabel datelbl1 = new JLabel("Date:");		
+		datelbl1.setFont(new Font("Myriad Pro",Font.PLAIN,18));
+		detailsOfOneShowPanel.add(datelbl1);
+		
+		JLabel datelbl2 = new JLabel(aShow.getDate());
+		datelbl2.setFont(new Font("Myriad Pro",Font.PLAIN,20));
+		detailsOfOneShowPanel.add(datelbl2);
+		
+		JLabel timebl1 = new JLabel("Time:");		
+		timebl1.setFont(new Font("Myriad Pro",Font.PLAIN,18));
+		detailsOfOneShowPanel.add(timebl1);
+		
+		JLabel timebl2 = new JLabel(aShow.getTime());
+		timebl2.setFont(new Font("Myriad Pro",Font.PLAIN,20));
+		detailsOfOneShowPanel.add(timebl2);
+		
+		return detailsOfOneShowPanel;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{	
+		if(e.getActionCommand().equals("OK"))
+		{			
+			MainMenu.swapTabComponent(new ProjectTheatricalShowPanel());
+		}
+		else if(e.getActionCommand().equals("New show"))
+		{
+			MainMenu.swapTabComponent(new AddNewShowPanel(this.myPlay));
+		}
+		else if(e.getActionCommand().equals("Cancel"))
+		{
+			MainMenu.swapTabComponent(new ProjectTheatricalShowPanel());
+		}
 	}
 }

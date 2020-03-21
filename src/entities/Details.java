@@ -4,30 +4,39 @@ import java.util.ArrayList;
 
 public class Details {
 
-	private String director, scriptWriter;
+	private String myDirector, myScriptWriter, myDescription;
 	private ArrayList<String> actors;
 	
 	public Details(){
 		
-		director = "<кень>";
-		scriptWriter = "<кень>";
+		myDirector = "";
+		myScriptWriter = "";
+		myDescription = "";
+		actors = new ArrayList<String>();
+	}
+	
+	public Details(String aDirector, String aScriptWriter,String aDescription){
+		
+		myDirector = aDirector;
+		myScriptWriter = aScriptWriter;
+		myDescription = aDescription;
 		actors = new ArrayList<String>();
 	}
 
 	public String getDirector() {
-		return director;
+		return myDirector;
 	}
 
 	public void setDirector(String director) {
-		this.director = director;
+		this.myDirector = director;
 	}
 
 	public String getScriptWriter() {
-		return scriptWriter;
+		return myScriptWriter;
 	}
 
 	public void setScriptWriter(String scriptWriter) {
-		this.scriptWriter = scriptWriter;
+		this.myScriptWriter = scriptWriter;
 	}
 
 	public ArrayList<String> getActors() {
@@ -37,5 +46,14 @@ public class Details {
 	public void addActor(String actor){
 		actors.add(actor);
 	}
+
+	public String getDescription() {
+		return myDescription;
+	}
+
+	public void setDescription(String myDescription) {
+		this.myDescription = myDescription;
+	}
+	
 	
 }

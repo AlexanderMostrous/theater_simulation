@@ -63,7 +63,7 @@ public class PlayPanel extends JPanel implements ActionListener{
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel startDateLbl = new JLabel(play.getStartDate());
+		JLabel startDateLbl = new JLabel("Mock Date");
 		startDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(startDateLbl, gbc);
 
@@ -79,7 +79,7 @@ public class PlayPanel extends JPanel implements ActionListener{
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel endDateLbl = new JLabel(play.getEndDate());
+		JLabel endDateLbl = new JLabel("Mock Date");
 		endDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(endDateLbl, gbc);
 
@@ -127,45 +127,23 @@ public class PlayPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+		SpecialButton button = (SpecialButton)e.getSource();
+		
 		if(e.getActionCommand().equals("Shows"))
-		{/*
-			
-			new ProjectPerformanceDetailsOnAShow(this,button.getShow());
-			this.setVisible(false);*/
-			SpecialButton button = (SpecialButton)e.getSource();
+		{			
 			MainMenu.swapTabComponent(new ShowDetailsPanel(button.getPlay()));
-		}/*
-		else if(e.getActionCommand().equals("Λεπτομέρειες"))
-		{
-			SpecialButton button = (SpecialButton)e.getSource();
-			new ProjectProducers(this, "Προβολή Συντελεστών",button.getShow());
-			this.setVisible(false);
 		}
-		else if(e.getActionCommand().equals("Έκδοση Εισιτηρίων"))
-		{
-
+		else if(e.getActionCommand().equals("Play details"))
+		{			
+			MainMenu.swapTabComponent(new PlayDetailsPanel(button.getPlay()));
 		}
-		else if(e.getActionCommand().equals("Τροποποίηση Έργου"))
-		{
-			SpecialButton button = (SpecialButton)e.getSource();
-			new AddNewShow(this,"Τροποποίηση Έργου",button.getShow());
-			this.dispose();
+		else if(e.getActionCommand().equals("Modify Play"))
+		{			
+			MainMenu.swapTabComponent(new ModifyPlayPanel(button.getPlay()));
 		}
-		else if(e.getActionCommand().equals("Διαγραφή Έργου"))
-		{
-			SpecialButton button = (SpecialButton)e.getSource();
-			new DeleteShowPrompt(button.getShow(),this);
-			this.setVisible(false);
+		else if(e.getActionCommand().equals("Delete Play"))
+		{			
+			MainMenu.swapTabComponent(new DeletePlayPanel(button.getPlay()));
 		}
-		else if(e.getActionCommand().equals("Κεντρικό Μενού"))
-		{
-			new MainMenu();
-			this.dispose();
-		}
-		else if(e.getActionCommand().equals("Προσθήκη Νέου Έργου"))
-		{
-			new AddNewShow(this,"Προσθήκη Νέου Έργου");
-			this.dispose();
-		}*/
 	}
 }

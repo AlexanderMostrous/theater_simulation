@@ -1,4 +1,4 @@
-package frames;
+package project_panels;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PreviewSeats extends JFrame implements ActionListener{
+public class PreviewSeats extends JPanel implements ActionListener{
 	
 	private JPanel mainPanel;
 	private boolean[][] map;

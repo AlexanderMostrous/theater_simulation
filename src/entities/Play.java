@@ -3,28 +3,13 @@ import java.util.ArrayList;
 
 public class Play {
 
-	private String title, startDate, endDate;
+	private String title;
 	private ArrayList<Show> myShows = new ArrayList<>();
 	private Details myDetails = new Details();
 	
 	public Play(String title)
 	{
 		this.title = title;
-	}
-	
-	public Play(String title, String startDate, String endDate)
-	{
-		this.title = title;
-		this.startDate = startDate;
-		this.endDate = endDate;
-	}
-	
-	public Play(String title, String startDate, String endDate,Show aShow)
-	{
-		this.title = title;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.myShows.add(aShow);
 	}
 
 	public Details getMyDetails() {
@@ -54,20 +39,4 @@ public class Play {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}	
 }
