@@ -19,17 +19,17 @@ import javax.swing.JScrollPane;
 import entities.Play;
 import utility.DataHolder;
 
-public class ProjectTheatricalShowPanel extends JPanel implements ActionListener{
+public class ProjectAllPlaysPanel extends JPanel implements ActionListener{
 
 	
-	public ProjectTheatricalShowPanel()
+	public ProjectAllPlaysPanel()
 	{
 			basicUI();
 	}
 	
 	public void basicUI(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension(screenSize.width,screenSize.height));
+		this.setPreferredSize(screenSize);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		int i = 0,j = 0;
@@ -61,7 +61,8 @@ public class ProjectTheatricalShowPanel extends JPanel implements ActionListener
 		gbc.gridy = i;
 		gbc.gridwidth = 100;
 		gbc.gridheight = 600;
-		jsp.setPreferredSize(new Dimension((int)(this.getPreferredSize().width*0.99),this.getPreferredSize().height*9/10));
+		Dimension dim = new Dimension((int)(this.getPreferredSize().width*0.99),this.getPreferredSize().height*9/10);
+		jsp.setPreferredSize(dim);
 		this.add(jsp,gbc);
 		
 		JPanel outerPanel = new JPanel();

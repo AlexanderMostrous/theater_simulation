@@ -11,21 +11,25 @@ public abstract class DataHolder {
 	public static void createDummyShowList(){
 
 		Play play1 = new Play("Hamlet");
-		play1.addShow(new Show(play1,"28/3/18", "17:30"));
-		play1.addShow(new Show(play1,"20/3/18", "18:30"));
-		play1.addShow(new Show(play1,"10/2/18", "18:30"));
+		play1.addShow(new Show(play1,"Mon, 02-Mar-2020", "17:30"));
+		play1.addShow(new Show(play1,"Tue, 03-Mar-2020", "20:00"));
+		play1.addShow(new Show(play1,"Wed, 04-Mar-2020", "21:30"));
 		plays.add(play1);
 		
 		Play play2 = new Play("Long Day's Journey Into Night");
-		play2.addShow(new Show(play2,"12/4/18", "17:30"));
-		play2.addShow(new Show(play2,"1/3/18", "20:00"));
-		play2.addShow(new Show(play2,"10/1/18", "21:30"));
+		play2.addShow(new Show(play2,"Thu, 05-Mar-2020", "19:45"));
+		play2.addShow(new Show(play2,"Fri, 06-Mar-2020", "17:30"));
+		play2.addShow(new Show(play2,"Sat, 07-Mar-2020", "19:00"));
+		play2.addShow(new Show(play2,"Sat, 07-Mar-2020", "20:00"));
+		play2.addShow(new Show(play2,"Sat, 07-Mar-2020", "21:00"));
+		play2.addShow(new Show(play2,"Sat, 07-Mar-2020", "22:00"));
+		play2.addShow(new Show(play2,"Sat, 07-Mar-2020", "23:00"));
 		plays.add(play2);
 		
 		Play play3 = new Play("Who's Afraid of Virginia Woolf?");
-		play3.addShow(new Show(play3,"5/5/18", "21:30"));
-		play3.addShow(new Show(play3,"6/4/18", "17:30"));
-		play3.addShow(new Show(play3,"1/7/18", "22:00"));
+		play3.addShow(new Show(play3,"Sun, 08-Mar-2020", "19:45"));
+		play3.addShow(new Show(play3,"Mon, 09-Mar-2020", "18:30"));
+		play3.addShow(new Show(play3,"Mon, 02-Mar-2020", "17:30"));
 		plays.add(play3);
 		
 		Play play4 = new Play("Death of a Salesman");

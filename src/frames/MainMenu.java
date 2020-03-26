@@ -9,27 +9,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import project_panels.ProjectTheatricalShowPanel;
+import project_panels.ProjectAllPlaysPanel;
 
 public abstract class MainMenu extends JFrame{
 
 	public static JFrame mainFrame;
-	//public static ArrayList<JPanel> tabbedPaneComponents;Array list that stores all main components (panels) filling the tabbed pane.
 	public static JTabbedPane tabbedPane;
 	
 	public static void createMainMenu()
-	{		
-		//tabbedPaneComponents = new ArrayList<JPanel>();
+	{
 		mainFrame = new JFrame();
 		preparePane(initializeMainPanel());
 	}
 		
 	private static JPanel initializeMainPanel()
-	{//TODO Window size should stay the same and not resize in case of content swap
+	{
 		JPanel outerPanel = new JPanel();
 		tabbedPane = new JTabbedPane();
 
-		tabbedPane.addTab("Plays", new ProjectTheatricalShowPanel());	
+		tabbedPane.addTab("Plays", new ProjectAllPlaysPanel());	
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);//Use alt+# as a user to navigate through tabs
 		
 		JPanel panel2 = makeTextPanel("Fill with ticket functionality");
@@ -37,6 +35,7 @@ public abstract class MainMenu extends JFrame{
 		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);//Use alt+# as a user to navigate through tabs
 		
 		outerPanel.add(tabbedPane);
+		
 		return outerPanel;
 	}
 	
