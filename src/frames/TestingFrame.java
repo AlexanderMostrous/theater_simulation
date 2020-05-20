@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import entities.Play;
-import project_panels.ShowDetailsPanel;
+import project_panels.DeletePlayPanel;
 
 public class TestingFrame extends JFrame {
 
@@ -24,7 +24,7 @@ public class TestingFrame extends JFrame {
 
 	public JPanel basicUI(Play aPlay)
 	{
-		JPanel panel = new ShowDetailsPanel(aPlay);
+		JPanel panel = new DeletePlayPanel(aPlay);
 
 		return panel;
 	}

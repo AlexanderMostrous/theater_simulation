@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 
 public class TimePanel extends JPanel implements ItemListener{
 
-	private static JComboBox<String> hoursCB;
-	private static JComboBox<String> minutesCB;
+	private JComboBox<String> hoursCB;
+	private JComboBox<String> minutesCB;
 	private JLabel myInitialTimeLabel;
 	
 	public TimePanel(JLabel initialTimeLabel)
@@ -31,7 +31,9 @@ public class TimePanel extends JPanel implements ItemListener{
 		GridBagConstraints gbc = new GridBagConstraints();
 		hoursCB = new JComboBox<String>(getHoursList());
 		minutesCB = new JComboBox<String>(getMinutesList());
-
+		hoursCB.addItemListener(this);
+		minutesCB.addItemListener(this);
+		
 		int i = 0, j = 0;//i for rows, j for columns
 		
 		gbc.gridx = j;
@@ -55,10 +57,6 @@ public class TimePanel extends JPanel implements ItemListener{
 		this.add(minutesCB,gbc);
 		
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		
-		//this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));	
-		//this.add(outerPanel);
-		
 	}
 	
 	private String[] getHoursList()
@@ -78,16 +76,9 @@ public class TimePanel extends JPanel implements ItemListener{
 	@Override
 	public void itemStateChanged(ItemEvent e)
 	{
-		if(e.getSource().equals(this.hoursCB))
+		if(e.getSource().equals(this.hoursCB)||e.getSource().equals(this.minutesCB))
 		{
-			
-		}
-		else if(e.getSource().equals(this.minutesCB))
-		{
-			
+			myInitialTimeLabel.setText(""+this.hoursCB.getSelectedItem()+":"+this.minutesCB.getSelectedItem());
 		}
 	}
-	
-
-
 }

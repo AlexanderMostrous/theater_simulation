@@ -21,10 +21,12 @@ public class Play {
 	}
 
 	public ArrayList<Show> getMyShows() {
-		return myShows;
+		return myShows; 
 	}
 
 	public void addShow(Show aShow) {
+		if(aShow.getMyPlay()==null)
+			aShow.setMyPlay(this);
 		this.myShows.add(aShow);
 	}
 	

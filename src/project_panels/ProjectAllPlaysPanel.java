@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import entities.Play;
+import frames.MainMenu;
 import utility.DataHolder;
 
 public class ProjectAllPlaysPanel extends JPanel implements ActionListener{
@@ -38,7 +39,7 @@ public class ProjectAllPlaysPanel extends JPanel implements ActionListener{
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 		if(!DataHolder.plays.isEmpty())
-		{
+		{//TODO An order based on which the plays are ordered should be implemented
 			for(Play s:DataHolder.plays)				
 				panel.add(new PlayPanel(s));			
 			panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -94,8 +95,9 @@ public class ProjectAllPlaysPanel extends JPanel implements ActionListener{
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) 
+	{
+		if(e.getActionCommand().equals("Add a new Play"))
+			MainMenu.swapTabComponent(new AddNewPlayPanel());		
 	}
 }

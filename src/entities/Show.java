@@ -11,6 +11,13 @@ public class Show {
 		date = aDate;
 		time = aTime;	
 	}
+	
+	public Show(String aDate, String aTime){
+		
+		myPlay = null;
+		date = aDate;
+		time = aTime;	
+	}
 
 	public Play getMyPlay() {
 		return myPlay;

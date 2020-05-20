@@ -7,7 +7,7 @@ import entities.*;
 public abstract class DataHolder {
 
 	public static ArrayList<Play> plays = new ArrayList<Play>();
-	
+	//TODO More realistic data should be applied so that testing can be more thorough
 	public static void createDummyShowList(){
 
 		Play play1 = new Play("Hamlet");

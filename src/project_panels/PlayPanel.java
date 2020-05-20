@@ -63,7 +63,7 @@ public class PlayPanel extends JPanel implements ActionListener{
 		gbc.gridx++;
 		gbc.insets = new Insets(5, 5, 5, 10);
 		gbc.gridwidth = 3;
-		JLabel startDateLbl = new JLabel("Mock Date");
+		JLabel startDateLbl = new JLabel("Mock Date");//TODO A complete date system should be implemented
 		startDateLbl.setFont(new Font("Myriad Pro",Font.PLAIN,17));
 		panel.add(startDateLbl, gbc);
 
@@ -91,12 +91,12 @@ public class PlayPanel extends JPanel implements ActionListener{
 		wresProvolwnBtn.addActionListener(this);
 		bottomPanel.add(wresProvolwnBtn, gbc);
 
-		SpecialButton detailsBtn = new SpecialButton("Play details",play);
+		SpecialButton detailsBtn = new SpecialButton("Details",play);
 		detailsBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		detailsBtn.addActionListener(this);
 		bottomPanel.add(detailsBtn, gbc);
 
-		SpecialButton ticketsBtn = new SpecialButton("Ticket Booking",play);
+		SpecialButton ticketsBtn = new SpecialButton("Book Tickets",play);
 		ticketsBtn.setFont(new Font("Myriad Pro",Font.PLAIN,18));
 		ticketsBtn.addActionListener(this);
 		bottomPanel.add(ticketsBtn, gbc);
@@ -133,9 +133,13 @@ public class PlayPanel extends JPanel implements ActionListener{
 		{			
 			MainMenu.swapTabComponent(new ShowDetailsPanel(button.getPlay()));
 		}
-		else if(e.getActionCommand().equals("Play details"))
+		else if(e.getActionCommand().equals("Details"))
 		{			
 			MainMenu.swapTabComponent(new PlayDetailsPanel(button.getPlay()));
+		}
+		else if(e.getActionCommand().equals("Book Tickets"))
+		{			
+			//TODO Tickets functionality should be implemented. 
 		}
 		else if(e.getActionCommand().equals("Modify Play"))
 		{			

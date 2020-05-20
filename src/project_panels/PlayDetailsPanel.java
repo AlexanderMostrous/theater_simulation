@@ -12,4 +12,6 @@ public class PlayDetailsPanel extends JPanel {
 	{
 		myPlay = aPlay;
 	}
+	
+	
 }
