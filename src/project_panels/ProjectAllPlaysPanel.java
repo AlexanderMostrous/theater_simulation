@@ -19,10 +19,10 @@ import javax.swing.JScrollPane;
 import entities.Play;
 import frames.MainMenu;
 import utility.DataHolder;
+import utility.SaveFunctionality;
 
 public class ProjectAllPlaysPanel extends JPanel implements ActionListener{
 
-	
 	public ProjectAllPlaysPanel()
 	{
 			basicUI();
@@ -67,7 +67,7 @@ public class ProjectAllPlaysPanel extends JPanel implements ActionListener{
 		this.add(jsp,gbc);
 		
 		JPanel outerPanel = new JPanel();
-		outerPanel.setLayout(new GridLayout(1, 2, 30, 0));
+		outerPanel.setLayout(new GridLayout(1, 0, 30, 0));
 
 		JButton menuBtn = new JButton("Main Menu");
 		menuBtn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
@@ -78,6 +78,16 @@ public class ProjectAllPlaysPanel extends JPanel implements ActionListener{
 		addNewShowBtn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
 		addNewShowBtn.addActionListener(this);
 		outerPanel.add(addNewShowBtn);
+		
+		JButton saveDataBtn = new JButton("Save Data");
+		saveDataBtn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
+		saveDataBtn.addActionListener(this);
+		outerPanel.add(saveDataBtn);
+		
+		JButton loadDataBtn = new JButton("Load Data");
+		loadDataBtn.setFont(new Font("Myriad Pro",Font.PLAIN,20));
+		loadDataBtn.addActionListener(this);
+		outerPanel.add(loadDataBtn);
 		
 		outerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 		outerPanel.setPreferredSize(new Dimension((int)(this.getPreferredSize().width*0.99),this.getPreferredSize().height*1/10));
@@ -98,6 +108,13 @@ public class ProjectAllPlaysPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getActionCommand().equals("Add a new Play"))
-			MainMenu.swapTabComponent(new AddNewPlayPanel());		
+			MainMenu.swapTabComponent(new AddNewPlayPanel());
+		else if(e.getActionCommand().equals("Save Data"))
+			SaveFunctionality.save();
+		else if(e.getActionCommand().equals("Load Data"))
+		{
+			SaveFunctionality.load();
+			MainMenu.swapTabComponent(new ProjectAllPlaysPanel());
+		}
 	}
 }

@@ -1,7 +1,8 @@
 package entities;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Play {
+public class Play implements Serializable{
 
 	private String title;
 	private ArrayList<Show> myShows = new ArrayList<>();

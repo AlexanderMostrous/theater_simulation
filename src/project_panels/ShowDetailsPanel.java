@@ -30,10 +30,28 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 	public ShowDetailsPanel(Play aPlay) 
 	{
 		myPlay = aPlay;
-		setBasicUI();
+		basicUI();
 	}
 	
-	public void setBasicUI(){//TODO If shows are too many, a JScrollPane should be implemented 
+	public void basicUI()
+	{
+		JPanel aggregatorPanel = new JPanel();
+		aggregatorPanel.setLayout(new GridBagLayout());
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		int i = 0, j = 0;//i for rows, j for columns
+		gbc.gridx = j;
+		gbc.gridy = i;
+		gbc.gridwidth = 1;
+		gbc.fill = GridBagConstraints.VERTICAL;
+		gbc.anchor = GridBagConstraints.NORTH;
+		gbc.insets = new Insets(5, 5, 20, 5);
+		//gbc.weighty = 0.9;	
+		this.add(setBasicUI());
+	}
+	
+	public JPanel setBasicUI(){//TODO If shows are too many, a JScrollPane should be implemented 
 		
 		JPanel outerPanel = new JPanel(), titlePanel = getTitlePanel(), showsPanel = getAllShowsDetailsPanel(), buttonsPanel = getUtilityPanel();
 		
@@ -46,6 +64,7 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		gbc.gridy = i;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.weighty = 0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		outerPanel.add(titlePanel,gbc);
 		i++;
@@ -53,6 +72,7 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		gbc.gridx = j;
 		gbc.gridy = i;
 		gbc.weighty = 0.2;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		outerPanel.add(showsPanel,gbc);
@@ -79,8 +99,13 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		outergbc.weightx = 1;
 		outergbc.weighty = 1;
 
-		//this.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-		this.add(outerPanel,outergbc);
+		JPanel aPanel = new JPanel();
+		aPanel.add(outerPanel,outergbc);
+		String text = "PlayTitle:";
+		TitledBorder b = BorderFactory.createTitledBorder(text);
+		b.setTitleFont(new Font("Myriad Pro",Font.PLAIN,25));
+		aPanel.setBorder(b);
+		return aPanel;
 	}
 	
 	private JPanel getTitlePanel()
@@ -91,13 +116,13 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		
 		int i = 0, j = 0;//i for rows, j for columns
 		
-		gbc.gridx = j;
+		/*gbc.gridx = j;
 		gbc.gridy = i;
 		gbc.insets = new Insets(0, 0, 0, 0);
 		JLabel titleLabel = new JLabel("PlayTitle: ");
 		titleLabel.setFont(new Font("Myriad Pro",Font.PLAIN,25));
 		titlePanel.add(titleLabel,gbc);
-		j++;
+		j++;*/
 		
 		gbc.gridx = j;
 		gbc.gridy = i;
@@ -128,6 +153,11 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		{
 			detailsOfAllShowsPanel.add(getOneShowDetailsPanel(s));
 		}
+		
+		String text = "Shows:";
+		TitledBorder b = BorderFactory.createTitledBorder(text);
+		b.setTitleFont(new Font("Myriad Pro",Font.PLAIN,25));
+		detailsOfAllShowsPanel.setBorder(b);
 		
 		return detailsOfAllShowsPanel;
 	}
@@ -191,6 +221,7 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		gbc.gridy = i;
 		gbc.insets = new Insets(0, 0, 0, 7);
 		gbc.anchor = GridBagConstraints.WEST;
+		gbc.insets = new Insets(0, 5, 0, 0);
 		JLabel datelbl1 = new JLabel("Date:");		
 		datelbl1.setFont(new Font("Myriad Pro",Font.PLAIN,20));
 		datePanel.add(datelbl1,gbc);
@@ -225,7 +256,7 @@ public class ShowDetailsPanel extends JPanel implements ActionListener{
 		
 		gbc.gridx = j;
 		gbc.gridy = i;
-		gbc.insets = new Insets(0, 5, 0, 0);
+		gbc.insets = new Insets(0, 5, 0, 5);
 		JLabel timebl2 = new JLabel(aShow.getTime());
 		timebl2.setFont(new Font("Myriad Pro",Font.PLAIN,22));
 		timePanel.add(timebl2,gbc);

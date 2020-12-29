@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Details {
+public class Details implements Serializable{
 
 	private String myDirector, myScriptWriter, myDescription;
 	private ArrayList<String> actors;

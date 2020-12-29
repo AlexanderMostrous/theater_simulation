@@ -227,7 +227,7 @@ public class CalendarPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getActionCommand().equals("<"))
-		{//TODO Need to test if the below procedure is correct
+		{
 			calendar.add(Calendar.MONTH, -1);
 			refresh();
 		}

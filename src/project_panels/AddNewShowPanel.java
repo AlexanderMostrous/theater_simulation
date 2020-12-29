@@ -19,6 +19,7 @@ import entities.Play;
 import entities.Show;
 import frames.MainMenu;
 import utility.DataHolder;
+import utility.SaveFunctionality;
 
 public class AddNewShowPanel extends JPanel implements ActionListener{
 
@@ -138,6 +139,7 @@ public class AddNewShowPanel extends JPanel implements ActionListener{
 		gbc.gridx = j;
 		gbc.gridy = i;
 		gbc.insets = new Insets(5, 5, 5, 5);
+		gbc.anchor = GridBagConstraints.EAST;
 		selectedTimeLbl = new JLabel("No time picked yet.");
 		selectedTimeLbl.setFont(new Font("Myriad Pro",Font.PLAIN,22));
 		mainPanel.add(selectedTimeLbl, gbc);
@@ -185,8 +187,9 @@ public class AddNewShowPanel extends JPanel implements ActionListener{
 		if(e.getActionCommand().equals("Add show"))
 		{
 			myPlay.addShow(new Show(selectedDateLbl.getText(), selectedTimeLbl.getText()));
+			SaveFunctionality.save();
 			selectedDateLbl.getText();
-			MainMenu.swapTabComponent(new ProjectAllPlaysPanel());
+			MainMenu.swapTabComponent(new ShowDetailsPanel(myPlay));
 		}
 		else if(e.getActionCommand().equals("Discard"))
 		{

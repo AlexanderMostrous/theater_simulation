@@ -143,7 +143,7 @@ public class PlayPanel extends JPanel implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("Modify Play"))
 		{			
-			MainMenu.swapTabComponent(new ModifyPlayPanel(button.getPlay()));
+			MainMenu.swapTabComponent(new EditPlayPanel(button.getPlay()));
 		}
 		else if(e.getActionCommand().equals("Delete Play"))
 		{			

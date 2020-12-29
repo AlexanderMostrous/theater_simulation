@@ -22,13 +22,13 @@ import entities.Details;
 import entities.Play;
 import frames.MainMenu;
 
-public class ModifyPlayPanel extends JPanel implements ActionListener{
+public class EditPlayPanel extends JPanel implements ActionListener{
 
 	private Play myPlay;
 	private JTextField playTitleTxtFld, directorTxtFld, scriptWriterTxtFld, actor1TxtFld, actor2TxtFld, actor3TxtFld, actor4TxtFld, actor5TxtFld;
 	private JTextArea playDescriptionTxtArea;
 	
-	public ModifyPlayPanel(Play aPlay)
+	public EditPlayPanel(Play aPlay)
 	{
 		myPlay = aPlay;		
 		basicUI();
@@ -137,6 +137,8 @@ public class ModifyPlayPanel extends JPanel implements ActionListener{
 		playDescriptionTxtArea = new JTextArea(myPlay.getMyDetails().getDescription(), 5, 30);		
 		playDescriptionTxtArea.setBorder(standardBorder);
 		playDescriptionTxtArea.setFont(new Font("Myriad Pro",Font.PLAIN,21));
+		playDescriptionTxtArea.setLineWrap(true);
+		playDescriptionTxtArea.setWrapStyleWord(true);
 		mainPanel.add(playDescriptionTxtArea, gbc);
 		i++;
 		j=0;

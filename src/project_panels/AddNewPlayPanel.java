@@ -137,6 +137,8 @@ public class AddNewPlayPanel extends JPanel implements ActionListener{
 		playDescriptionTxtArea = new JTextArea("", 5, 30);		
 		playDescriptionTxtArea.setBorder(standardBorder);
 		playDescriptionTxtArea.setFont(new Font("Myriad Pro",Font.PLAIN,21));
+		playDescriptionTxtArea.setLineWrap(true);
+		playDescriptionTxtArea.setWrapStyleWord(true);
 		mainPanel.add(playDescriptionTxtArea, gbc);
 		i++;
 		j=0;
